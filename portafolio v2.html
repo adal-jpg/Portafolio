@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth" data-palette="brutalist-dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hola</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Space Grotesk, Plus Jakarta Sans & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Space+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root,
+        [data-palette="editorial-cobalt"] {
+            --bg-main: #F4F1EA;
+            --bg-surface: #FFFFFF;
+            --bg-alt: #E6E1D6;
+            --text-main: #111111;
+            --text-muted: #3F3F3B;
+            --border-solid: #111111;
+            --accent-primary: #1D4ED8;
+            --accent-primary-text: #FFFFFF;
+            --accent-secondary: #FACC15;
+            --accent-secondary-text: #111111;
+            --accent-tertiary: #EA580C;
+            --accent-tertiary-text: #FFFFFF;
+            --tag-bg: #E6E1D6;
+        }
+
+        [data-palette="brutalist-dark"] {
+            --bg-main: #121316;
+            --bg-surface: #1E2025;
+            --bg-alt: #282B33;
+            --text-main: #F9FAFB;
+            --text-muted: #D1D5DB;
+            --border-solid: #F9FAFB;
+            --accent-primary: #D9F99D;
+            --accent-primary-text: #111111;
+            --accent-secondary: #38BDF8;
+            --accent-secondary-text: #111111;
+            --accent-tertiary: #F43F5E;
+            --accent-tertiary-text: #FFFFFF;
+            --tag-bg: #282B33;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            overflow-x: hidden;
+            transition: background-color 0.15s ease, color 0.15s ease;
+        }
+
+        .solid-card {
+            background-color: var(--bg-surface);
+            border: 2px solid var(--border-solid);
+            box-shadow: 5px 5px 0px var(--border-solid);
+        }
+
+        .solid-box-alt {
+            background-color: var(--bg-alt);
+            border: 2px solid var(--border-solid);
+        }
+
+        .solid-btn-primary {
+            background-color: var(--accent-primary);
+            color: var(--accent-primary-text);
+            border: 2px solid var(--border-solid);
+            box-shadow: 4px 4px 0px var(--border-solid);
+            transition: transform 0.12s ease, box-shadow 0.12s ease;
+        }
+        .solid-btn-primary:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px var(--border-solid);
+        }
+
+        .solid-btn-secondary {
+            background-color: var(--accent-secondary);
+            color: var(--accent-secondary-text);
+            border: 2px solid var(--border-solid);
+            box-shadow: 4px 4px 0px var(--border-solid);
+            transition: transform 0.12s ease, box-shadow 0.12s ease;
+        }
+        .solid-btn-secondary:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px var(--border-solid);
+        }
+
+        .solid-btn-neutral {
+            background-color: var(--bg-surface);
+            color: var(--text-main);
+            border: 2px solid var(--border-solid);
+            box-shadow: 3px 3px 0px var(--border-solid);
+            transition: transform 0.12s ease, box-shadow 0.12s ease;
+        }
+        .solid-btn-neutral:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 5px 5px 0px var(--border-solid);
+        }
+
+        .solid-badge-primary {
+            background-color: var(--accent-primary);
+            color: var(--accent-primary-text);
+            border: 2px solid var(--border-solid);
+        }
+
+        .solid-badge-secondary {
+            background-color: var(--accent-secondary);
+            color: var(--accent-secondary-text);
+            border: 2px solid var(--border-solid);
+        }
+
+        .solid-badge-tertiary {
+            background-color: var(--accent-tertiary);
+            color: var(--accent-tertiary-text);
+            border: 2px solid var(--border-solid);
+        }
+
+        .solid-tag {
+            background-color: var(--tag-bg);
+            color: var(--text-main);
+            border: 1.5px solid var(--border-solid);
+        }
+
+        .border-theme {
+            border-color: var(--border-solid);
+        }
+
+        .text-muted-theme {
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- ================= TOP NAVIGATION BAR ================= -->
+    <header class="sticky top-0 z-40 w-full border-b-2 border-theme" style="background-color: var(--bg-surface);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-3">
+            <a href="#inicio" class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-lg solid-badge-primary flex items-center justify-center font-display font-bold text-xl tracking-tight">
+                    👁
+                </div>
+                <div>
+                    <span class="font-display font-bold text-lg sm:text-xl tracking-tight block leading-none">Adalberto Chapoy</span>
+                    <span class="text-[11px] font-mono uppercase tracking-wider text-muted-theme block mt-1"></span>
+                </div>
+            </a>
+
+            <nav class="hidden lg:flex items-center gap-1 font-mono text-xs font-bold uppercase">
+                <a href="#inicio" class="px-3 py-2 rounded-lg hover:underline decoration-2 underline-offset-4">01. Inicio</a>
+                <a href="#proyectos" class="px-3 py-2 rounded-lg hover:underline decoration-2 underline-offset-4">02. Proyectos</a>
+                <a href="#habilidades" class="px-3 py-2 rounded-lg hover:underline decoration-2 underline-offset-4">03. Stack</a>
+                <a href="#trayectoria" class="px-3 py-2 rounded-lg hover:underline decoration-2 underline-offset-4">04. Trayectoria</a>
+                <a href="#contacto" class="px-3 py-2 rounded-lg hover:underline decoration-2 underline-offset-4">05. Contacto</a>
+            </nav>
+
+            <div class="flex items-center gap-2">
+               
+
+                <button onclick="toggleMobileMenu()" class="lg:hidden solid-btn-neutral p-2 rounded-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu w-5 h-5"><path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path></svg>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobileMenu" class="lg:hidden border-t-2 border-theme px-4 py-4 space-y-2 font-mono text-xs font-bold uppercase hidden" style="background-color: var(--bg-surface);">
+            <a href="#inicio" onclick="toggleMobileMenu()" class="block py-2">01. Inicio</a>
+            <a href="#proyectos" onclick="toggleMobileMenu()" class="block py-2">02. Proyectos</a>
+            <a href="#habilidades" onclick="toggleMobileMenu()" class="block py-2">03. Stack Técnico</a>
+            <a href="#trayectoria" onclick="toggleMobileMenu()" class="block py-2">04. Trayectoria</a>
+            <a href="#contacto" onclick="toggleMobileMenu()" class="block py-2">05. Contacto</a>
+        </div>
+    </header>
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- 01. HERO SECTION -->
+        <section id="inicio" class="py-10 sm:py-16">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+                <div class="lg:col-span-8 solid-card rounded-2xl p-6 sm:p-10 flex flex-col justify-between">
+                    <div>
+                        <div class="flex flex-wrap items-center gap-2 mb-6">
+                            <span class="solid-badge-secondary px-3 py-1 rounded-md font-mono text-xs font-bold uppercase tracking-wider">
+                                @oboboi
+                            </span>
+                        </div>
+
+                        <h1 class="font-display text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.06] mb-6">Realidad Mixta,&nbsp;<br>Sistemas &amp;&nbsp;<br>Arquitectura Web.</h1>
+                        <p class="text-base sm:text-lg text-muted-theme leading-relaxed max-w-3xl mb-8 font-medium">Desarrollador tecnológico y diseñador multidisciplinar especializado en crear experiencias espaciales interactivas en Unity, agentes conversacionales con IA local.</p>
+                    </div>
+
+                    <div>
+                        <div class="flex flex-wrap items-center gap-4 pb-8 border-b-2 border-theme">
+                            <a href="#proyectos" class="solid-btn-primary px-6 py-3.5 rounded-xl font-mono text-xs sm:text-sm font-bold uppercase flex items-center gap-2">
+                                <span>Ver Proyectos</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-down-right w-4 h-4"><path d="m7 7 10 10"></path><path d="M17 7v10H7"></path></svg>
+                            </a>
+                            <a href="#contacto" class="solid-btn-secondary px-6 py-3.5 rounded-xl font-mono text-xs sm:text-sm font-bold uppercase flex items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail w-4 h-4"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path><rect x="2" y="4" width="20" height="16" rx="2"></rect></svg>
+                                <span>Contactar Ahora</span>
+                            </a>
+                        </div>
+
+                        <div class="pt-6 grid grid-cols-2 sm:grid-cols-4 gap-4">
+                            <div class="solid-box-alt p-3.5 rounded-xl">
+                                <div class="font-display text-2xl sm:text-3xl font-bold">Quest 3</div>
+                                <div class="font-mono text-[11px] uppercase font-bold text-muted-theme mt-0.5">UNITY • MRUK • NOVA UI</div>
+                            </div>
+                            <div class="solid-box-alt p-3.5 rounded-xl">
+                                <div class="font-display text-2xl sm:text-3xl font-bold">Microsoft 365</div>
+                                <div class="font-mono text-[11px] uppercase font-bold text-muted-theme mt-0.5">EXCEL • ACCESS • LOOP</div>
+                            </div>
+                            <div class="solid-box-alt p-3.5 rounded-xl">
+                                <div class="font-display text-2xl sm:text-3xl font-bold">Full-Stack</div>
+                                <div class="font-mono text-[11px] uppercase font-bold text-muted-theme mt-0.5">PYTHON • FLASK • WS</div>
+                            </div>
+                            <div class="solid-box-alt p-3.5 rounded-xl">
+                                <div class="font-display text-2xl sm:text-3xl font-bold">Hardware</div>
+                                <div class="font-mono text-[11px] uppercase font-bold text-muted-theme mt-0.5">IT • ARDUINO • DESARROLLO</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-4 flex flex-col gap-6">
+                    <div class="solid-card rounded-2xl p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between pb-4 mb-4 border-b-2 border-theme">
+                                <span class="font-mono text-xs font-bold uppercase">FICHA TÉCNICA</span>
+                                <span class="solid-badge-tertiary px-2 py-0.5 rounded text-[10px] font-mono font-bold">ACTIVO</span>
+                            </div>
+
+                            <div class="solid-box-alt rounded-xl p-5 mb-5 flex flex-col items-center justify-center">
+                                <svg viewBox="0 0 240 150" class="w-full h-36">
+                                    <rect x="12" y="15" width="90" height="52" rx="6" fill="var(--accent-primary)" stroke="var(--border-solid)" stroke-width="3"></rect>
+                                    <text x="57" y="40" text-anchor="middle" fill="var(--accent-primary-text)" font-family="JetBrains Mono" font-weight="bold" font-size="11">UNITY XR</text>
+                                    <text x="57" y="54" text-anchor="middle" fill="var(--accent-primary-text)" font-family="JetBrains Mono" font-size="9">QUEST 3 / MRUK</text>
+
+                                    <rect x="138" y="15" width="90" height="52" rx="6" fill="var(--accent-secondary)" stroke="var(--border-solid)" stroke-width="3"></rect>
+                                    <text x="183" y="40" text-anchor="middle" fill="var(--accent-secondary-text)" font-family="JetBrains Mono" font-weight="bold" font-size="11">IA LOCAL</text>
+                                    <text x="183" y="54" text-anchor="middle" fill="var(--accent-secondary-text)" font-family="JetBrains Mono" font-size="9">OLLAMA + STT</text>
+
+                                    <rect x="45" y="90" width="150" height="46" rx="6" fill="var(--bg-surface)" stroke="var(--border-solid)" stroke-width="3"></rect>
+                                    <text x="120" y="113" text-anchor="middle" fill="var(--text-main)" font-family="JetBrains Mono" font-weight="bold" font-size="11">PYTHON + WEBSOCKETS</text>
+                                    <text x="120" y="127" text-anchor="middle" fill="var(--text-main)" font-family="JetBrains Mono" font-size="9">PUENTE TIEMPO REAL</text>
+
+                                    <line x1="102" y1="41" x2="138" y2="41" stroke="var(--border-solid)" stroke-width="3"></line>
+                                    <line x1="57" y1="67" x2="85" y2="90" stroke="var(--border-solid)" stroke-width="3"></line>
+                                    <line x1="183" y1="67" x2="155" y2="90" stroke="var(--border-solid)" stroke-width="3"></line>
+                                </svg>
+                            </div>
+
+                            <div class="space-y-2.5 font-mono text-xs">
+                                <div class="flex justify-between py-1.5 border-b border-theme">
+                                    <span class="text-muted-theme">ESPECIALIDAD:</span>
+                                    <span class="font-bold text-right">c# / python / c++</span>
+                                </div>
+                                <div class="flex justify-between py-1.5 border-b border-theme">
+                                    <span class="text-muted-theme">MOTORES 3D:</span>
+                                    <span class="font-bold text-right">Unity 6 / Blender / SolidWorks</span>
+                                </div>
+                                <div class="flex justify-between py-1.5 border-b border-theme">
+                                    <span class="text-muted-theme">PIPELINE VOZ:</span>
+                                    <span class="font-bold text-right">Whisper / Piper</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-5 pt-4 border-t-2 border-theme flex items-center justify-between">
+                            <span class="font-mono text-[11px] font-bold uppercase">Estado del Sistema</span>
+                            <span class="solid-badge-primary px-3 py-1.5 rounded-lg font-mono text-xs font-bold">100% Funcional</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 02. PROJECTS SECTION ================= -->
+        <section id="proyectos" class="py-12 sm:py-16 border-t-2 border-theme">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+                <div>
+                    <div class="inline-block solid-badge-primary px-3 py-1 rounded-md font-mono text-xs font-bold uppercase mb-2">
+                    PORTAFOLIO
+                    </div>
+                    <h2 class="font-display text-3xl sm:text-4xl font-bold">Proyectos &amp; Sistemas Construidos</h2>
+                </div>
+            </div>
+
+            <div id="projectFilters" class="flex flex-wrap items-center gap-2.5 mb-8">
+                <button onclick="filterProjects('todos')" data-filter="todos" class="filter-btn solid-btn-primary px-4 py-2 rounded-xl font-mono text-xs font-bold uppercase">
+                    Todos
+                </button>
+                <button onclick="filterProjects('xr')" data-filter="xr" class="filter-btn solid-btn-neutral px-4 py-2 rounded-xl font-mono text-xs font-bold uppercase">
+                    VR / MR (Unity &amp; Quest 3)
+                </button>
+                <button onclick="filterProjects('ia')" data-filter="ia" class="filter-btn solid-btn-neutral px-4 py-2 rounded-xl font-mono text-xs font-bold uppercase">
+                    IA Local &amp; Voz (Python)
+                </button>
+                <button onclick="filterProjects('web')" data-filter="web" class="filter-btn solid-btn-neutral px-4 py-2 rounded-xl font-mono text-xs font-bold uppercase">
+                    Full-Stack &amp; WebSockets
+                </button>
+            </div>
+
+            <!-- Projects Grid -->
+            <div id="projectsGrid" class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Project 1 -->
+                <article class="solid-card rounded-2xl p-6 sm:p-7 flex flex-col justify-between" data-category="xr">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-4">
+                            <span class="solid-badge-primary px-3 py-1 rounded font-mono text-xs font-bold uppercase">
+                                VR / MR (Unity &amp; Quest 3)
+                            </span>
+                            <span class="solid-tag px-2.5 py-1 rounded font-mono text-xs font-bold">2026</span>
+                        </div>
+
+                        <h3 class="font-display text-xl sm:text-2xl font-bold mb-3 leading-snug">
+                            Entorno Interactivo en Realidad Mixta (Meta Quest 3 + MRUK + Nova UI)
+                        </h3>
+
+                        <p class="text-sm text-muted-theme leading-relaxed mb-5">
+                            Aplicación espacial en Realidad Mixta para Meta Quest 3 que escanea la habitación del usuario, permite posicionar mobiliario 3D a escala real.
+                        </p>
+
+                        <div class="mb-5">
+                            <button onclick="toggleCardCaseStudy(this)" class="w-full solid-box-alt px-4 py-2.5 rounded-xl font-mono text-xs font-bold uppercase flex items-center justify-between hover:opacity-90">
+                                <span>📋 Caso de Estudio: 6 Puntos</span>
+                                <span class="toggle-text">▼ Desplegar (1–6)</span>
+                            </button>
+
+                            <div class="case-study-content hidden grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
+                                <div class="solid-box-alt p-3.5 rounded-xl">
+                                    <span class="solid-badge-primary px-2 py-0.5 rounded font-mono text-[10px] font-bold uppercase mb-1.5 inline-block">1. Contexto</span>
+                                    <p class="text-xs leading-relaxed text-muted-theme font-medium mt-1">Las experiencias de comercio espacial en Realidad Mixta suelen carecer de comprensión real del entorno físico del usuario.</p>
+                                </div>
+                                <div class="solid-box-alt p-3.5 rounded-xl">
+                                    <span class="solid-badge-tertiary px-2 py-0.5 rounded font-mono text-[10px] font-bold uppercase mb-1.5 inline-block">2. Reto</span>
+                                    <p class="text-xs leading-relaxed text-muted-theme font-medium mt-1">Integrar simultáneamente el escaneo espacial de paredes, piso y muebles reales en Meta Quest 3.</p>
+                                </div>
+                                <div class="solid-box-alt p-3.5 rounded-xl">
+                                    <span class="solid-badge-secondary px-2 py-0.5 rounded font-mono text-[10px] font-bold uppercase mb-1.5 inline-block">3. Enfoque</span>
+                                    <p class="text-xs leading-relaxed text-muted-theme font-medium mt-1">Arquitectura desacoplada combinando Meta Quest 3 Building Blocks, MRUK y Nova UI.</p>
+                                </div>
+                                <div class="solid-box-alt p-3.5 rounded-xl">
+                                    <span class="solid-badge-primary px-2 py-0.5 rounded font-mono text-[10px] font-bold uppercase mb-1.5 inline-block">4. Ejecución</span>
+                                    <p class="text-xs leading-relaxed text-muted-theme font-medium mt-1">Implementación de reconocimiento de mallas y catálogo interactivo con Nova UI.</p>
+                                </div>
+                                <div class="solid-box-alt p-3.5 rounded-xl">
+                                    <span class="solid-badge-secondary px-2 py-0.5 rounded font-mono text-[10px] font-bold uppercase mb-1.5 inline-block">5. Resultado</span>
+                                    <p class="text-xs leading-relaxed text-muted-theme font-medium mt-1">Entorno fluido donde el usuario decora su espacio físico real con objetos virtuales persistentes.</p>
+                                </div>
+                                <div class="solid-box-alt p-3.5 rounded-xl">
+                                    <span class="solid-badge-tertiary px-2 py-0.5 rounded font-mono text-[10px] font-bold uppercase mb-1.5 inline-block">6. Impacto</span>
+                                    <p class="text-xs leading-relaxed text-muted-theme font-medium mt-1">Consolidación de flujo de trabajo modular para computación espacial.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t-2 border-theme">
+                        <div class="flex flex-wrap gap-1.5 mb-4">
+                            <span class="solid-tag px-2.5 py-0.5 rounded font-mono text-[11px] font-bold">Unity</span>
+                            <span class="solid-tag px-2.5 py-0.5 rounded font-mono text-[11px] font-bold">C#</span>
+                            <span class="solid-tag px-2.5 py-0.5 rounded font-mono text-[11px] font-bold">Meta Quest 3</span>
+                            <span class="solid-tag px-2.5 py-0.5 rounded font-mono text-[11px] font-bold">MRUK</span>
+                            <span class="solid-tag px-2.5 py-0.5 rounded font-mono text-[11px] font-bold">Nova UI</span>
+                        </div>
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <button onclick="openProjectModal('proj1')" class="solid-btn-primary px-4 py-2 rounded-xl font-mono text-xs font-bold uppercase flex items-center gap-1.5">
+                                <span>Abrir Caso de Estudio Completo</span>
+                                <span>→</span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 2 -->
+                <article class="solid-card rounded-2xl p-6 sm:p-7 flex flex-col justify-between" data-category="ia">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-4">
+                            <span class="solid-badge-secondary px-3 py-1 rounded font-mono text-xs font-bold uppercase">
+                                IA Local &amp; Voz (Python)
+                            </span>
+                            <span class="solid-tag px-2.5 py-1 rounded font-mono text-xs font-bold">2026</span>
+                        </div>
+
+                        <h3 class="font-display text-xl sm:text-2xl font-bold mb-3 leading-snug">
+                            Ecosistema Local de Síntesis y Conversación por Voz (Python + Ollama + Piper TTS)
+                        </h3>
+
+                        <p class="text-sm text-muted-theme leading-relaxed mb-5">
+                            Sistema conversacional 100% local en Python y Flask que une transcripción con Whisper, inferencia rápida con modelos Llama en Ollama y síntesis neuronal.
+                        </p>
+
+                        <div class="mb-5">
+                            <button onclick="toggleCardCaseStudy(this)" class="w-full solid-box-alt px-4 py-2.5 rounded-xl font-mono text-xs font-bold uppercase flex items-center justify-between hover:opacity-90">
+                                <span>📋 Caso de Estudio: 6 Puntos</span>
+                                <span class="toggle-text">▼ Desplegar (1–6)</span>
+                            </button>
+
+                            <div class="case-study-content hidden grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
+                                <div class="solid-box-alt p-3.5 rounded-xl">
+                                    <span class="solid-badge-primary px-2 py-0.5 rounded font-mono text-[10px] font-bold uppercase mb-1.5 inline-block">1. Contexto</span>
+                                    <p class="text-xs leading-relaxed text-muted-theme font-medium mt-1">Las APIs en la nube introducen costos recurrentes, problemas de privacidad y latencia variable.</p>
+                                </div>
+                                <div class="solid-box-alt p-3.5 rounded-xl">
+                                    <span class="solid-badge-tertiary px-2 py-0.5 rounded font-mono text-[10px] font-bold uppercase mb-1.5 inline-block">2. Reto</span>
+                                    <p class="text-xs leading-relaxed text-muted-theme font-medium mt-1">Orquestar STT, LLM y TTS completamente en local manteniendo tiempos de respuesta conversacionales.</p>
+                                </div>
+                                <div class="solid-box-alt p-3.5 rounded-xl">
+                                    <span class="solid-badge-secondary px-2 py-0.5 rounded font-mono text-[10px] font-bold uppercase mb-1.5 inline-block">3. Enfoque</span>
+                                    <p class="text-xs leading-relaxed text-muted-theme font-medium mt-1">Servidor ligero en Python y Flask con modelos cuantizados en Ollama y Piper TTS.</p>
+                                </div>
+                                <div class="solid-box-alt p-3.5 rounded-xl">
+                                    <span class="solid-badge-primary px-2 py-0.5 rounded font-mono text-[10px] font-bold uppercase mb-1.5 inline-block">4. Ejecución</span>
+                                    <p class="text-xs leading-relaxed text-muted-theme font-medium mt-1">Configuración de Faster-Whisper, system prompt en Ollama y Piper TTS.</p>
+                                </div>
+                                <div class="solid-box-alt p-3.5 rounded-xl">
+                                    <span class="solid-badge-secondary px-2 py-0.5 rounded font-mono text-[10px] font-bold uppercase mb-1.5 inline-block">5. Resultado</span>
+                                    <p class="text-xs leading-relaxed text-muted-theme font-medium mt-1">Asistente de voz autónomo capaz de mantener diálogos dinámicos sin conexión a internet.</p>
+                                </div>
+                                <div class="solid-box-alt p-3.5 rounded-xl">
+                                    <span class="solid-badge-tertiary px-2 py-0.5 rounded font-mono text-[10px] font-bold uppercase mb-1.5 inline-block">6. Impacto</span>
+                                    <p class="text-xs leading-relaxed text-muted-theme font-medium mt-1">Dominio sobre la optimización de inferencia local en CPU/GPU.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t-2 border-theme">
+                        <div class="flex flex-wrap gap-1.5 mb-4">
+                            <span class="solid-tag px-2.5 py-0.5 rounded font-mono text-[11px] font-bold">Python</span>
+                            <span class="solid-tag px-2.5 py-0.5 rounded font-mono text-[11px] font-bold">Flask</span>
+                            <span class="solid-tag px-2.5 py-0.5 rounded font-mono text-[11px] font-bold">Ollama</span>
+                            <span class="solid-tag px-2.5 py-0.5 rounded font-mono text-[11px] font-bold">Piper TTS</span>
+                        </div>
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <button onclick="openProjectModal('proj2')" class="solid-btn-primary px-4 py-2 rounded-xl font-mono text-xs font-bold uppercase flex items-center gap-1.5">
+                                <span>Abrir Caso de Estudio Completo</span>
+                                <span>→</span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 3 -->
+                <article class="solid-card rounded-2xl p-6 sm:p-7 flex flex-col justify-between" data-category="web">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-4">
+                            <span class="solid-badge-tertiary px-3 py-1 rounded font-mono text-xs font-bold uppercase">
+                                Full-Stack &amp; WebSockets
+                            </span>
+                            <span class="solid-tag px-2.5 py-1 rounded font-mono text-xs font-bold">2025</span>
+                        </div>
+
+                        <h3 class="font-display text-xl sm:text-2xl font-bold mb-3 leading-snug">
+                            Sistema Web Multi-Dispositivo en Tiempo Real (Flask + WebSockets en Red Local)
+                        </h3>
+
+                        <p class="text-sm text-muted-theme leading-relaxed mb-5">
+                            Plataforma cliente-servidor en Python Flask y WebSockets diseñada para sincronizar estados visuales entre múltiples pantallas y teléfonos en red local.
+                        </p>
+
+                        <div class="mb-5">
+                            <button onclick="toggleCardCaseStudy(this)" class="w-full solid-box-alt px-4 py-2.5 rounded-xl font-mono text-xs font-bold uppercase flex items-center justify-between hover:opacity-90">
+                                <span>📋 Caso de Estudio: 6 Puntos</span>
+                                <span class="toggle-text">▼ Desplegar (1–6)</span>
+                            </button>
+
+                            <div class="case-study-content hidden grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
+                                <div class="solid-box-alt p-3.5 rounded-xl">
+                                    <span class="solid-badge-primary px-2 py-0.5 rounded font-mono text-[10px] font-bold uppercase mb-1.5 inline-block">1. Contexto</span>
+                                    <p class="text-xs leading-relaxed text-muted-theme font-medium mt-1">En instalaciones interactivas se requiere controlar vistas remotas desde un dispositivo móvil sin retrasos.</p>
+                                </div>
+                                <div class="solid-box-alt p-3.5 rounded-xl">
+                                    <span class="solid-badge-tertiary px-2 py-0.5 rounded font-mono text-[10px] font-bold uppercase mb-1.5 inline-block">2. Reto</span>
+                                    <p class="text-xs leading-relaxed text-muted-theme font-medium mt-1">Eliminar el retardo del polling HTTP y garantizar sincronización instantánea en red local (LAN).</p>
+                                </div>
+                                <div class="solid-box-alt p-3.5 rounded-xl">
+                                    <span class="solid-badge-secondary px-2 py-0.5 rounded font-mono text-[10px] font-bold uppercase mb-1.5 inline-block">3. Enfoque</span>
+                                    <p class="text-xs leading-relaxed text-muted-theme font-medium mt-1">Arquitectura orientada a eventos con Python Flask y comunicación bidireccional por WebSockets.</p>
+                                </div>
+                                <div class="solid-box-alt p-3.5 rounded-xl">
+                                    <span class="solid-badge-primary px-2 py-0.5 rounded font-mono text-[10px] font-bold uppercase mb-1.5 inline-block">4. Ejecución</span>
+                                    <p class="text-xs leading-relaxed text-muted-theme font-medium mt-1">Backend en Flask gestionando salas y frontend emitiendo eventos instantáneos.</p>
+                                </div>
+                                <div class="solid-box-alt p-3.5 rounded-xl">
+                                    <span class="solid-badge-secondary px-2 py-0.5 rounded font-mono text-[10px] font-bold uppercase mb-1.5 inline-block">5. Resultado</span>
+                                    <p class="text-xs leading-relaxed text-muted-theme font-medium mt-1">Sincronización inmediata entre múltiples dispositivos con latencia inferior a 30 ms.</p>
+                                </div>
+                                <div class="solid-box-alt p-3.5 rounded-xl">
+                                    <span class="solid-badge-tertiary px-2 py-0.5 rounded font-mono text-[10px] font-bold uppercase mb-1.5 inline-block">6. Impacto</span>
+                                    <p class="text-xs leading-relaxed text-muted-theme font-medium mt-1">Base reutilizable para conectar interfaces web de control remoto con instalaciones físicas.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t-2 border-theme">
+                        <div class="flex flex-wrap gap-1.5 mb-4">
+                            <span class="solid-tag px-2.5 py-0.5 rounded font-mono text-[11px] font-bold">Python</span>
+                            <span class="solid-tag px-2.5 py-0.5 rounded font-mono text-[11px] font-bold">Flask</span>
+                            <span class="solid-tag px-2.5 py-0.5 rounded font-mono text-[11px] font-bold">WebSockets</span>
+                        </div>
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <button onclick="openProjectModal('proj3')" class="solid-btn-primary px-4 py-2 rounded-xl font-mono text-xs font-bold uppercase flex items-center gap-1.5">
+                                <span>Abrir Caso de Estudio Completo</span>
+                                <span>→</span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- ================= 03. SKILLS SECTION ================= -->
+        <section id="habilidades" class="py-12 sm:py-16 border-t-2 border-theme">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+                <div>
+                    <div class="inline-block solid-badge-secondary px-3 py-1 rounded-md font-mono text-xs font-bold uppercase mb-2">
+                          HERRAMIENTAS
+                    </div>
+                    <h2 class="font-display text-3xl sm:text-4xl font-bold">Matriz de Habilidades Técnicas</h2>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="solid-card rounded-2xl p-6">
+                    <div class="flex items-center justify-between gap-2 pb-4 mb-4 border-b-2 border-theme">
+                        <div>
+                            <h3 class="font-display text-lg sm:text-xl font-bold">01. Realidad Virtual &amp; Mixta (XR)</h3>
+                            <p class="text-xs text-muted-theme font-mono">Entornos 3D e interacción espacial</p>
+                        </div>
+                        <span class="solid-badge-primary px-2.5 py-1 rounded font-mono text-xs font-bold shrink-0">CORE XR</span>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="solid-tag px-3 py-1.5 rounded-lg font-mono text-xs font-bold">Unity 3D / Unity 6</span>
+                        <span class="solid-tag px-3 py-1.5 rounded-lg font-mono text-xs font-bold">Programación C#</span>
+                        <span class="solid-tag px-3 py-1.5 rounded-lg font-mono text-xs font-bold">Meta Quest 3</span>
+                        <span class="solid-tag px-3 py-1.5 rounded-lg font-mono text-xs font-bold">MRUK</span>
+                        <span class="solid-tag px-3 py-1.5 rounded-lg font-mono text-xs font-bold">Meta Spatial SDK</span>
+                        <span class="solid-tag px-3 py-1.5 rounded-lg font-mono text-xs font-bold">Nova UI</span>
+                    </div>
+                </div>
+            
+                <div class="solid-card rounded-2xl p-6">
+                    <div class="flex items-center justify-between gap-2 pb-4 mb-4 border-b-2 border-theme">
+                        <div>
+                            <h3 class="font-display text-lg sm:text-xl font-bold">02. IA Local &amp; Sistemas de Voz</h3>
+                            <p class="text-xs text-muted-theme font-mono">Agentes conversacionales y procesamiento de audio</p>
+                        </div>
+                        <span class="solid-badge-secondary px-2.5 py-1 rounded font-mono text-xs font-bold shrink-0">AI / VOICE</span>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="solid-tag px-3 py-1.5 rounded-lg font-mono text-xs font-bold">Python</span>
+                        <span class="solid-tag px-3 py-1.5 rounded-lg font-mono text-xs font-bold">Ollama (LLMs Locales)</span>
+                        <span class="solid-tag px-3 py-1.5 rounded-lg font-mono text-xs font-bold">Faster-Whisper (STT)</span>
+                        <span class="solid-tag px-3 py-1.5 rounded-lg font-mono text-xs font-bold">Piper TTS (Voz Local)</span>
+                        <span class="solid-tag px-3 py-1.5 rounded-lg font-mono text-xs font-bold">ElevenLabs API</span>
+                    </div>
+                </div>
+            
+                <div class="solid-card rounded-2xl p-6">
+                    <div class="flex items-center justify-between gap-2 pb-4 mb-4 border-b-2 border-theme">
+                        <div>
+                            <h3 class="font-display text-lg sm:text-xl font-bold">03. Full-Stack Web &amp; Tiempo Real</h3>
+                            <p class="text-xs text-muted-theme font-mono">Servidores, sincronización y frontend</p>
+                        </div>
+                        <span class="solid-badge-tertiary px-2.5 py-1 rounded font-mono text-xs font-bold shrink-0">FULL-STACK</span>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="solid-tag px-3 py-1.5 rounded-lg font-mono text-xs font-bold">Flask (Python)</span>
+                        <span class="solid-tag px-3 py-1.5 rounded-lg font-mono text-xs font-bold">WebSockets / Socket.IO</span>
+                        <span class="solid-tag px-3 py-1.5 rounded-lg font-mono text-xs font-bold">HTML5 &amp; CSS3</span>
+                        <span class="solid-tag px-3 py-1.5 rounded-lg font-mono text-xs font-bold">JavaScript (ES6+)</span>
+                    </div>
+                </div>
+            
+                <div class="solid-card rounded-2xl p-6">
+                    <div class="flex items-center justify-between gap-2 pb-4 mb-4 border-b-2 border-theme">
+                        <div>
+                            <h3 class="font-display text-lg sm:text-xl font-bold">04. Hardware Embebido &amp; Diseño UI/UX</h3>
+                            <p class="text-xs text-muted-theme font-mono">Electrónica digital y prototipado de interfaces</p>
+                        </div>
+                        <span class="solid-badge-primary px-2.5 py-1 rounded font-mono text-xs font-bold shrink-0">HW &amp; DESIGN</span>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="solid-tag px-3 py-1.5 rounded-lg font-mono text-xs font-bold">Arduino</span>
+                        <span class="solid-tag px-3 py-1.5 rounded-lg font-mono text-xs font-bold">C / C++</span>
+                        <span class="solid-tag px-3 py-1.5 rounded-lg font-mono text-xs font-bold">Protocolo I2C &amp; LCD</span>
+                        <span class="solid-tag px-3 py-1.5 rounded-lg font-mono text-xs font-bold">Figma (Wireframes &amp; UI)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 04. TRAYECTORIA ================= -->
+        <section id="trayectoria" class="py-12 sm:py-16 border-t-2 border-theme">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <div class="lg:col-span-12 space-y-5">
+                    <div class="solid-card rounded-2xl p-6">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                            <span class="solid-badge-primary px-2.5 py-1 rounded font-mono text-xs font-bold">2025 — 2026</span>
+                            <span class="font-mono text-xs font-bold uppercase text-muted-theme">Unity • Meta Quest 3 • MRUK</span>
+                        </div>
+                        <h3 class="font-display text-xl font-bold mb-2">Ingeniería de Realidad Mixta &amp; Computación Espacial</h3>
+                        <p class="text-sm text-muted-theme leading-relaxed">Desarrollo de aplicaciones inmersivas para Meta Quest 3 utilizando MRUK (Mixed Reality Utility Kit), Spatial SDK y Nova UI. Implementación de reconocimiento del entorno físico, colocación de mobiliario 3D a escala real e interacción multimodal.</p>
+                    </div>
+
+                    <div class="solid-card rounded-2xl p-6">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                            <span class="solid-badge-secondary px-2.5 py-1 rounded font-mono text-xs font-bold">2025 — 2026</span>
+                            <span class="font-mono text-xs font-bold uppercase text-muted-theme">Python • Ollama • Whisper • TTS</span>
+                        </div>
+                        <h3 class="font-display text-xl font-bold mb-2">Sistemas de Voz en Tiempo Real &amp; Agentes con IA Local</h3>
+                        <p class="text-sm text-muted-theme leading-relaxed">Diseño de pipelines conversacionales de baja latencia integrando transcripción con Faster-Whisper, inferencia local con LLMs en Ollama y síntesis vocal mediante Piper TTS.</p>
+                    </div>
+
+                    <div class="solid-card rounded-2xl p-6">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                            <span class="solid-badge-tertiary px-2.5 py-1 rounded font-mono text-xs font-bold">2024 — 2025</span>
+                            <span class="font-mono text-xs font-bold uppercase text-muted-theme">Flask • WebSockets • Arduino • Figma</span>
+                        </div>
+                        <h3 class="font-display text-xl font-bold mb-2">Full-Stack en Tiempo Real, Sistemas Embebidos &amp; Diseño UI/UX</h3>
+                        <p class="text-sm text-muted-theme leading-relaxed">Arquitectura de controladores web multi-pantalla sincronizados con Flask y WebSockets, prototipado electrónico con Arduino y dirección de identidad visual en Figma.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 05. CONTACTO ================= -->
+        <section id="contacto" class="py-12 sm:py-16 border-t-2 border-theme">
+            <div class="solid-card rounded-2xl p-6 sm:p-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    <div class="lg:col-span-5 space-y-5">
+                        <div class="inline-block solid-badge-primary px-3 py-1 rounded-md font-mono text-xs font-bold uppercase">
+                           CONTACTO DIRECTO
+                        </div>
+                        <h2 class="font-display text-3xl sm:text-4xl font-bold leading-tight">Chamba?</h2>
+                        <p class="text-sm sm:text-base text-muted-theme leading-relaxed"></p>
+
+                        <div class="solid-box-alt p-4 rounded-xl flex items-center justify-between gap-3">
+                            <div class="overflow-hidden">
+                                <span class="font-mono text-[10px] font-bold uppercase text-muted-theme block">CORREO DIRECTO</span>
+                                <span id="contactEmail" class="font-mono text-sm sm:text-base font-bold truncate block">adal28561@gmail.com</span>
+                            </div>
+                            <button onclick="copyEmail()" class="solid-btn-primary px-3 py-2 rounded-lg font-mono text-xs font-bold uppercase shrink-0">
+                                Copiar
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7">
+                        <form onsubmit="handleContactSubmit(event)" class="solid-box-alt p-6 sm:p-8 rounded-2xl space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block font-mono text-xs font-bold uppercase mb-1.5">Nombre</label>
+                                    <input type="text" required placeholder="Tu nombre o empresa" class="w-full px-4 py-3 rounded-xl border-2 border-theme font-sans text-sm focus:outline-none" style="background-color: var(--bg-surface); color: var(--text-main);">
+                                </div>
+                                <div>
+                                    <label class="block font-mono text-xs font-bold uppercase mb-1.5">Correo Electrónico</label>
+                                    <input type="email" required placeholder="correo@ejemplo.com" class="w-full px-4 py-3 rounded-xl border-2 border-theme font-sans text-sm focus:outline-none" style="background-color: var(--bg-surface); color: var(--text-main);">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block font-mono text-xs font-bold uppercase mb-1.5">Tipo de Proyecto</label>
+                                <select class="w-full px-4 py-3 rounded-xl border-2 border-theme font-sans text-sm font-medium focus:outline-none" style="background-color: var(--bg-surface); color: var(--text-main);">
+                                    <option>Desarrollo VR / Realidad Mixta (Unity / Meta Quest 3)</option>
+                                    <option>Sistemas de IA Local &amp; Voz (Python / Ollama / Whisper / TTS)</option>
+                                    <option>Aplicación Full-Stack &amp; Tiempo Real (Flask / WebSockets)</option>
+                                    <option>Prototipado Hardware (Arduino / C++) &amp; Diseño UI/UX (Figma)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block font-mono text-xs font-bold uppercase mb-1.5">Mensaje</label>
+                                <textarea rows="4" required placeholder="Describe los objetivos técnicos o de diseño de tu proyecto..." class="w-full px-4 py-3 rounded-xl border-2 border-theme font-sans text-sm focus:outline-none" style="background-color: var(--bg-surface); color: var(--text-main);"></textarea>
+                            </div>
+                            <button type="submit" class="w-full solid-btn-primary py-3.5 rounded-xl font-mono text-xs sm:text-sm font-bold uppercase">
+                                Enviar Mensaje
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t-2 border-theme py-8 mt-12" style="background-color: var(--bg-surface);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs">
+            <div>
+                © 2026 <strong>Adalberto Chapoy</strong> — Saltillo
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================= MODAL DETALLE DE PROYECTO (DINÁMICO) ================= -->
+    <div id="projectModal" class="fixed inset-0 z-50 bg-black/75 flex items-center justify-center p-4 overflow-y-auto hidden">
+        <div class="solid-card rounded-2xl max-w-4xl w-full p-6 sm:p-8 relative my-8 max-h-[92vh] overflow-y-auto">
+            <div class="flex items-center justify-between gap-2 pb-4 mb-4 border-b-2 border-theme">
+                <span id="modalCategoryBadge" class="solid-badge-primary px-3 py-1 rounded font-mono text-xs font-bold uppercase">XR // 2026</span>
+                <button onclick="closeProjectModal()" class="solid-btn-neutral px-3 py-1.5 rounded-lg font-mono text-xs font-bold">✕ CERRAR</button>
+            </div>
+
+            <h3 id="modalTitle" class="font-display text-2xl sm:text-3xl font-bold mb-2">Título del Proyecto</h3>
+            <p id="modalDescription" class="text-sm sm:text-base text-muted-theme leading-relaxed mb-6">Descripción general.</p>
+
+            <div class="mb-6">
+                <h4 class="font-mono text-xs font-bold uppercase tracking-wider mb-3">Desglose de Ingeniería // Caso de Estudio (6 Puntos)</h4>
+                <div id="modalCaseStudyGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Rellenado dinámicamente por JS -->
+                </div>
+            </div>
+
+            <div class="flex justify-end pt-4 border-t-2 border-theme">
+                <button onclick="closeProjectModal()" class="solid-btn-primary px-5 py-2.5 rounded-xl font-mono text-xs font-bold uppercase">
+                    Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CV MODAL -->
+    <div id="cvModal" class="fixed inset-0 z-50 bg-black/75 flex items-center justify-center p-4 overflow-y-auto hidden">
+        <div class="solid-card rounded-2xl max-w-3xl w-full p-6 sm:p-10 relative my-8">
+            <div class="flex items-center justify-between pb-4 mb-6 border-b-2 border-theme">
+                <span class="solid-badge-secondary px-3 py-1 rounded font-mono text-xs font-bold uppercase">CURRÍCULUM VITAE // VISTA IMPRIMIBLE</span>
+                <div class="flex items-center gap-2">
+                    <button onclick="window.print()" class="solid-btn-primary px-3.5 py-1.5 rounded-lg font-mono text-xs font-bold uppercase">
+                        Imprimir / PDF
+                    </button>
+                    <button onclick="closeCVModal()" class="solid-btn-neutral px-3 py-1.5 rounded-lg font-mono text-xs font-bold">✕</button>
+                </div>
+            </div>
+
+            <div id="cvPrintableArea" class="space-y-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b-2 border-theme pb-4">
+                    <div>
+                        <h2 class="font-display text-3xl font-bold">Adalberto Chapoy</h2>
+                        <p class="font-mono text-xs sm:text-sm font-bold mt-1">Ingeniero Multidisciplinario — XR • IA Local &amp; Voz • Full-Stack</p>
+                    </div>
+                    <div class="font-mono text-xs sm:text-right">
+                        <div class="font-bold">adal28561@gmail.com</div>
+                        <div>Saltillo, Coahuila, México</div>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-mono text-xs font-bold uppercase mb-1.5">Resumen Profesional</h4>
+                    <p class="text-sm leading-relaxed">Desarrollador tecnológico y diseñador multidisciplinar especializado en crear experiencias espaciales interactivas en Unity, agentes conversacionales con IA local.</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="solid-box-alt p-4 rounded-xl">
+                        <h4 class="font-mono text-xs font-bold uppercase mb-2">Proyectos Destacados</h4>
+                        <ul class="text-xs space-y-1.5 list-disc list-inside">
+                            <li><strong>Agente de Voz IA:</strong> STT con Whisper, LLM local y TTS con Piper/ElevenLabs.</li>
+                            <li><strong>Tienda MR en Meta Quest 3:</strong> Escaneo espacial MRUK, Spatial SDK y catálogo Nova UI.</li>
+                            <li><strong>Sincronizador Multi-Pantalla:</strong> Servidor en tiempo real con Python, Flask y WebSockets.</li>
+                        </ul>
+                    </div>
+                    <div class="solid-box-alt p-4 rounded-xl">
+                        <h4 class="font-mono text-xs font-bold uppercase mb-2">Competencias Clave</h4>
+                        <ul class="text-xs space-y-1.5">
+                            <li><strong>XR &amp; 3D:</strong> Unity, C#, Meta Quest 3, MRUK, Spatial SDK, Nova UI</li>
+                            <li><strong>IA &amp; Voz:</strong> Python, Ollama, Whisper, Piper TTS, ElevenLabs</li>
+                            <li><strong>Web:</strong> HTML5, CSS, JS, Flask, WebSockets</li>
+                            <li><strong>Hardware:</strong> Arduino, C++, I2C, Figma</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= JAVASCRIPT LOGIC ================= -->
+    <script>
+        // Base de datos local para los modales de los 3 proyectos
+        const projectsData = {
+            'proj1': {
+                title: "Entorno Interactivo en Realidad Mixta (Meta Quest 3 + MRUK + Nova UI)",
+                category: "VR / MR (Unity & Quest 3) // 2026",
+                description: "Aplicación espacial en Realidad Mixta para Meta Quest 3 que escanea la habitación del usuario, permite posicionar mobiliario 3D a escala real e interactuar mediante interfaces flotantes optimizadas.",
+                caseStudy: [
+                    { label: "1. Contexto", badge: "solid-badge-primary", text: "Las experiencias de comercio espacial en Realidad Mixta suelen carecer de comprensión real del entorno físico del usuario o dependen de menús 2D tradicionales poco ergonómicos en visores inmersivos." },
+                    { label: "2. Reto", badge: "solid-badge-tertiary", text: "Integrar simultáneamente el escaneo espacial de paredes, piso y muebles reales en Meta Quest 3 junto con una interfaz 3D ergonómica." },
+                    { label: "3. Enfoque", badge: "solid-badge-secondary", text: "Arquitectura desacoplada en Unity combinando Meta Quest 3 Building Blocks, MRUK y Meta Spatial SDK para el anclaje físico, y Nova UI para paneles espaciales reactivos." },
+                    { label: "4. Ejecución", badge: "solid-badge-primary", text: "Se implementó el reconocimiento de mallas del cuarto con MRUK para validar colisiones y superficies de colocación; se diseñó el catálogo interactivo con Nova UI soportando Hand Tracking, Ray y Poke Interactors." },
+                    { label: "5. Resultado", badge: "solid-badge-secondary", text: "Un entorno de Realidad Mixta fluido donde el usuario decora su espacio físico real con objetos virtuales persistentes mientras conversa por voz natural con un asistente 3D contextual." },
+                    { label: "6. Impacto o Aprendizaje", badge: "solid-badge-tertiary", text: "Consolidación de un flujo de trabajo modular para computación espacial que une diseño de interfaces 3D (Nova UI + MRUK)." }
+                ]
+            },
+            'proj2': {
+                title: "Ecosistema Local de Síntesis y Conversación por Voz (Python + Ollama + Piper TTS)",
+                category: "IA Local & Voz (Python) // 2026",
+                description: "Sistema conversacional 100% local en Python y Flask que une transcripción con Whisper, inferencia rápida con modelos Llama en Ollama y síntesis neuronal Piper TTS con personalidad inspirada en Wheatley de Portal.",
+                caseStudy: [
+                    { label: "1. Contexto", badge: "solid-badge-primary", text: "Depender exclusivamente de APIs en la nube para asistentes de voz introduce costos recurrentes, problemas de privacidad y latencia de red variable durante demostraciones interactivas." },
+                    { label: "2. Reto", badge: "solid-badge-tertiary", text: "Orquestar captura de audio, transcripción (STT), generación de texto (LLM) y síntesis de voz (TTS) completamente en local manteniendo tiempos de respuesta conversacionales y una personalidad carismática muy marcada." },
+                    { label: "3. Enfoque", badge: "solid-badge-secondary", text: "Construcción de un servidor ligero en Python y Flask que administra el flujo de audio por etapas y utiliza modelos cuantizados en Ollama junto con síntesis neuronal ultrarrápida en Piper TTS." },
+                    { label: "4. Ejecución", badge: "solid-badge-primary", text: "Se configuró Faster-Whisper para transcripción inmediata del micrófono, se diseñó un System Prompt estructurado en Ollama emulando el humor británico de Wheatley, y se procesó la salida de audio en tiempo real." },
+                    { label: "5. Resultado", badge: "solid-badge-secondary", text: "Un asistente de voz autónomo capaz de mantener diálogos dinámicos con baja latencia sin conexión a internet, exponiendo endpoints limpios en Flask." },
+                    { label: "6. Impacto o Aprendizaje", badge: "solid-badge-tertiary", text: "Dominio profundo sobre la optimización de inferencia local en CPU/GPU, ajuste de hiperparámetros de LLMs y diseño de personalidades sintéticas consistentes." }
+                ]
+            },
+            'proj3': {
+                title: "Sistema Web Multi-Dispositivo en Tiempo Real (Flask + WebSockets en Red Local)",
+                category: "Full-Stack & WebSockets // 2025",
+                description: "Plataforma cliente-servidor en Python Flask y WebSockets diseñada para sincronizar estados visuales, comandos e interacciones entre múltiples pantallas y teléfonos dentro de una misma red local.",
+                caseStudy: [
+                    { label: "1. Contexto", badge: "solid-badge-primary", text: "En instalaciones interactivas, presentaciones técnicas y prototipos multi-pantalla, se requiere controlar vistas remotas desde un dispositivo móvil o panel maestro sin retrasos perceptibles." },
+                    { label: "2. Reto", badge: "solid-badge-tertiary", text: "Eliminar el retardo del polling HTTP tradicional y garantizar que todos los clientes conectados en la red local (LAN) actualicen su interfaz al unísono en milisegundos." },
+                    { label: "3. Enfoque", badge: "solid-badge-secondary", text: "Arquitectura orientada a eventos utilizando Python Flask como servidor central y comunicación bidireccional persistente mediante WebSockets sobre la red local." },
+                    { label: "4. Ejecución", badge: "solid-badge-primary", text: "Se desarrolló el backend en Flask gestionando salas y conexiones activas, junto con interfaces frontend en HTML5, CSS y JavaScript que emiten y escuchan eventos de estado instantáneos." },
+                    { label: "5. Resultado", badge: "solid-badge-secondary", text: "Sincronización inmediata entre múltiples dispositivos en red local con latencia inferior a 30 ms, permitiendo disparar cambios visuales y telemetría en tiempo real." },
+                    { label: "6. Impacto o Aprendizaje", badge: "solid-badge-tertiary", text: "Base reutilizable para conectar interfaces web de control remoto con instalaciones físicas o experiencias inmersivas." }
+                ]
+            }
+        };
+
+        // Filtrado de proyectos
+        function filterProjects(cat) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                const active = btn.getAttribute('data-filter') === cat;
+                btn.className = active
+                    ? 'filter-btn solid-btn-primary px-4 py-2 rounded-xl font-mono text-xs font-bold uppercase'
+                    : 'filter-btn solid-btn-neutral px-4 py-2 rounded-xl font-mono text-xs font-bold uppercase';
+            });
+
+            document.querySelectorAll('#projectsGrid article').forEach(article => {
+                if (cat === 'todos' || article.getAttribute('data-category') === cat) {
+                    article.style.display = 'flex';
+                } else {
+                    article.style.display = 'none';
+                }
+            });
+        }
+
+        // Desplegar/Ocultar 6 puntos en tarjetas principales
+        function toggleCardCaseStudy(button) {
+            const content = button.nextElementSibling;
+            const textSpan = button.querySelector('.toggle-text');
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                content.classList.add('grid');
+                textSpan.innerText = '▲ Ocultar Desglose';
+            } else {
+                content.classList.add('hidden');
+                content.classList.remove('grid');
+                textSpan.innerText = '▼ Desplegar (1–6)';
+            }
+        }
+
+        // Abrir Modal con datos dinámicos
+        function openProjectModal(projKey) {
+            const data = projectsData[projKey];
+            if (!data) return;
+
+            document.getElementById('modalCategoryBadge').innerText = data.category;
+            document.getElementById('modalTitle').innerText = data.title;
+            document.getElementById('modalDescription').innerText = data.description;
+
+            const gridContainer = document.getElementById('modalCaseStudyGrid');
+            gridContainer.innerHTML = data.caseStudy.map(item => `
+                <div class="solid-box-alt p-4 rounded-xl">
+                    <div class="mb-2">
+                        <span class="${item.badge} px-2.5 py-1 rounded font-mono text-xs font-bold uppercase">${item.label}</span>
+                    </div>
+                    <p class="text-xs sm:text-sm leading-relaxed text-muted-theme font-medium">${item.text}</p>
+                </div>
+            `).join('');
+
+            document.getElementById('projectModal').classList.remove('hidden');
+        }
+
+        function closeProjectModal() {
+            document.getElementById('projectModal').classList.add('hidden');
+        }
+
+        function openCVModal() {
+            document.getElementById('cvModal').classList.remove('hidden');
+        }
+
+        function closeCVModal() {
+            document.getElementById('cvModal').classList.add('hidden');
+        }
+
+        function copyEmail() {
+            const email = document.getElementById('contactEmail').innerText.trim();
+            const temp = document.createElement('textarea');
+            temp.value = email;
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand('copy');
+            document.body.removeChild(temp);
+            alert(`Correo copiado: ${email}`);
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            e.target.reset();
+            alert('¡Mensaje enviado correctamente!');
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+
+        window.onload = function() {
+            lucide.createIcons();
+        };
+    </script>
+</body>
+</html>
